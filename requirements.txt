@@ -9,5 +9,5 @@ youtube_transcript_api==0.6.1
 moviepy==1.0.3
 pydub==0.25.1
 numpy==1.25.2
-gunicorn
+gunicorn==20.1.0
 werkzeug==2.3.7

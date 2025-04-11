@@ -1,0 +1,71 @@
+API Documentation
+Overview
+This API provides an endpoint /convert that allows users to extract text from various file types or URLs. The extraction process runs asynchronously and sends the result (or any error encountered) to a specified webhook URL.
+
+Endpoint
+POST /convert
+Extracts text from a provided file or URL.
+
+Sample Request:
+Headers:
+x-api-key: adgklahdgkahgla (Your API key)
+Form data:
+file: [Your file to be processed]
+url: "https://www.example.com" (Your URL to be processed)
+webhookURL: "https://your-webhook-url.com" (The URL where the API will send the results)
+uniqueID: "12345" (A unique identifier for your request)
+Note: Either file or url must be provided, not both.
+
+Sample Response:
+Success:
+
+json
+Copy code
+{
+  "status": "Received file. Processing..."
+}
+Error (Invalid API key):
+
+json
+Copy code
+{
+  "error": "Invalid or missing API key"
+}
+Webhook Payload:
+Success:
+
+json
+Copy code
+{
+  "text": "Extracted text from the file or URL goes here...",
+  "uniqueID": "12345",
+  "processingTime": "2.56"
+}
+Error:
+
+json
+Copy code
+{
+  "error": "Error message",
+  "uniqueID": "12345",
+  "processingTime": "2.56"
+}
+Supported Filetypes:
+PDF (.pdf)
+Word (.docx)
+Excel (.xlsx)
+CSV (.csv)
+Text (.txt)
+PowerPoint (.pptx)
+HTML (.html)
+XML (.xml)
+JSON (.json)
+How it Works:
+The user sends a POST request to /convert with either a file or a URL.
+The API checks for a valid API key in the headers.
+The API checks for necessary parameters (webhookURL and uniqueID).
+The extraction process starts asynchronously.
+Once the extraction is complete, the API sends a webhook payload to the provided webhookURL.
+For YouTube URLs, the API fetches the video transcript.
+For other URLs, the API scrapes the content and extracts text.
+Note: The uniqueID allows users to identify which response corresponds to which request when receiving webhook payloads.

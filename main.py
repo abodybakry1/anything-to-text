@@ -17,7 +17,7 @@ from moviepy.editor import VideoFileClip
 
 
 app = Flask(__name__)
-API_KEY = "placeholderAPIKey"
+API_KEY = "medtopikey"
 AUDIO_EXTENSIONS = ["flac", "mp3", "mp4", "mpeg", "mpga", "m4a", "ogg", "wav", "webm"]
 
 
